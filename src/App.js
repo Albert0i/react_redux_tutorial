@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import Counter from './features/counter/Counter'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Counter />
     </div>
   );
 }
 
 export default App;
+
+/*
+   Reference
+   
+   1. React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial
+      https://youtu.be/NqzdVN2tyvQ
+   2. React Redux Quick Start
+      https://react-redux.js.org/tutorials/quick-start
+   3. Redux Fundamentals, Part 2: Concepts and Data Flow
+      https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow
+
+ */
