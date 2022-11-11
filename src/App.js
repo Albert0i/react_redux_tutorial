@@ -12,7 +12,7 @@ export default App;
 
 /*
    Reference
-   
+
    1. React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial
       https://youtu.be/NqzdVN2tyvQ
    2. React Redux Quick Start
