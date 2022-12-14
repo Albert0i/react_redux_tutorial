@@ -45,7 +45,8 @@ III. Provide the Redux Store to React
 
 
 IV. Create a Redux State Slice
-    > Creating a slice requires a string name to identify the slice, an initial state value, and one or more reducer functions to define how the state can be updated. Once a slice is created, we can export the generated Redux action creators and the reducer function for the whole slice.
+
+> Creating a slice requires a string name to identify the slice, an initial state value, and one or more reducer functions to define how the state can be updated. Once a slice is created, we can export the generated Redux action creators and the reducer function for the whole slice.
 
     features/counter/counterSlice.js
 ```javascript
@@ -80,7 +81,8 @@ IV. Create a Redux State Slice
 ```
 
 V. Add Slice Reducers to the Store
-    >  By defining a field inside the reducers parameter, we tell the store to use this slice reducer function to handle all updates to that state.
+
+> By defining a field inside the reducers parameter, we tell the store to use this slice reducer function to handle all updates to that state.
 
     app/store.js
 ```javascript
@@ -96,7 +98,8 @@ V. Add Slice Reducers to the Store
 
 
 VI. Use Redux State and Actions in React Components
-    >  Read data from the store with useSelector, and dispatch actions using useDispatch. 
+
+> Read data from the store with useSelector, and dispatch actions using useDispatch. 
 
     features/counter/Counter.js
 ```javascript
