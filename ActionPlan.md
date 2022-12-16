@@ -26,21 +26,21 @@ III. Provide the Redux Store to React
 
 index.js
 ```javascript
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import App from './App'
-import store from './app/store'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import { store } from './app/store'
 import { Provider } from 'react-redux'
 
-// As of React 18
-const root = ReactDOM.createRoot(document.getElementById('root'))
-
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<Provider store={store}>
+  <React.StrictMode>
+    <Provider store={store}>
     <App />
-</Provider>
-)
+    </Provider>  
+  </React.StrictMode>
+);
 ```
 
 
@@ -58,33 +58,32 @@ features/counter/counterSlice.js
 ```javascript
 import { createSlice } from '@reduxjs/toolkit'
 
+const initialState = {
+    count: 0
+}
 export const counterSlice = createSlice({
-name: 'counter',
-initialState: {
-    value: 0,
-},
-reducers: {
-    increment: (state) => {
-    // Redux Toolkit allows us to write "mutating" logic in reducers. It
-    // doesn't actually mutate the state because it uses the Immer library,
-    // which detects changes to a "draft state" and produces a brand new
-    // immutable state based off those changes
-    state.value += 1
-    },
-    decrement: (state) => {
-    state.value -= 1
-    },
-    incrementByAmount: (state, action) => {
-    state.value += action.payload
-    },
-},
+    name: 'counter',
+    initialState, 
+    reducers: {
+        increment: (state) => {
+            state.count++; 
+        },
+        decrement: (state) => {
+            state.count--; 
+        },
+        reset: (state) => {
+            state.count = 0 
+        },
+        incrementByAmount: (state, action) => {
+            state.count += action.payload
+        }
+    }
 })
 
-// Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
-
+export const { increment, decrement, reset, incrementByAmount } = counterSlice.actions 
 export default counterSlice.reducer
 ```
+
 
 V. Add Slice Reducers to the Store
 
@@ -92,13 +91,13 @@ V. Add Slice Reducers to the Store
 
 app/store.js
 ```javascript
-import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from '../features/counter/counterSlice'
 
-export default configureStore({
-reducer: {
-    counter: counterReducer,
-},
+export const store = configureStore({
+    reducer: {
+        counter: counterReducer
+    }
+
 })
 ```
 
@@ -109,38 +108,54 @@ VI. Use Redux State and Actions in React Components
 
 features/counter/Counter.js
 ```javascript
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment } from './counterSlice'
-import styles from './Counter.module.css'
+import { useSelector, useDispatch } from "react-redux"
+import { increment, decrement, 
+         reset, incrementByAmount } from './counterSlice'
+import { useState } from "react"
 
-export function Counter() {
-const count = useSelector((state) => state.counter.value)
-const dispatch = useDispatch()
+const Counter = () => {
+    const count = useSelector(state => state.counter.count)
+    const dispatch = useDispatch()
+    
+    const [ incrementAmount, setIncrementAmount ] = useState(0)
+    const addValue = Number(incrementAmount) || 0
+    
+    const resetAll = ()=> {
+        setIncrementAmount(0)
+        dispatch(reset())
+    }
 
-return (
-    <div>
-    <div>
-        <button
-        aria-label="Increment value"
-        onClick={() => dispatch(increment())}
-        >
-        Increment
-        </button>
-        <span>{count}</span>
-        <button
-        aria-label="Decrement value"
-        onClick={() => dispatch(decrement())}
-        >
-        Decrement
-        </button>
-    </div>
-    </div>
-)
+  return (
+    <section>
+        <p>{count}</p>
+        <div>
+            <button onClick={() => dispatch(increment())}>+</button>
+            <button onClick={() => dispatch(decrement())}>-</button>
+        </div>
+        <input type='text' 
+               value={incrementAmount} 
+               onChange={ e=> setIncrementAmount(e.target.value)}
+               />
+
+        <div>
+            <button onClick={ ()=> dispatch(incrementByAmount(addValue)) }>
+                Add Amount
+            </button>
+            <button onClick={ resetAll }>
+                Reset
+            </button>
+        </div>
+    </section>
+  )
 }
+
+export default Counter
 ```
 
+
 VII. Output screen 
+
+![alt redux1](./img/redux1.jpg)
 
 
 VIII. Reference 
