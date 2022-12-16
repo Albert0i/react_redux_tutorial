@@ -46,7 +46,11 @@ root.render(
 
 IV. Create a Redux State Slice
 
-Splitting up redux state object into multiple slices of state. A slice is a collection of reducer logic of actions for a single feature in the app. 
+Splitting up redux state object into multiple slices of state. So, a slice is really a collection of reducer logic of actions for a single feature in the app. 
+
+For example, a blog might have a slice for post and another 
+slice for comment to handle the logic of each differently. 
+So they each get their own slice. 
 
 > Creating a slice requires a string name to identify the slice, an initial state value, and one or more reducer functions to define how the state can be updated. Once a slice is created, we can export the generated Redux action creators and the reducer function for the whole slice.
 
