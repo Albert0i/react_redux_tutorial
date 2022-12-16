@@ -1,7 +1,7 @@
 
 ## Action Plan 
 
-A lazy extract from [React Redux Quick Start](https://react-redux.js.org/tutorials/quick-start). 
+A *idiot* extract from [React Redux Quick Start](https://react-redux.js.org/tutorials/quick-start). 
 
 
 I. Install Redux Toolkit and React Redux
