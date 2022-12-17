@@ -1,17 +1,23 @@
 
-## Action Plan 
-
-A *idiot* extract from [React Redux Quick Start](https://react-redux.js.org/tutorials/quick-start). 
+# A mini extract from [React Redux Quick Start](https://react-redux.js.org/tutorials/quick-start) for *idiot*
 
 
-I. Install Redux Toolkit and React Redux
+## Prologue 
+How long can we live? A couple of decades, a couple of days, a couple of seconds... nobody knows... The only thing I know is **"Everything has a time"**. 
+I have studied science and literature throughout my life. I have learned how to create things from scratch; how to works with my bare hands. But all I know will vanish as long as my physical portion expires. 
+
+If one can persist memory in a *vault*, *store* or some other devices so that one's memory may outlive the body. By then, this meta-physical existence of *oneself* is still the same physical oneself or not... I doubt... I don't know... 
+
+
+## I. Install Redux Toolkit and React Redux
+[Redux](https://redux.js.org/) is the original *old school* state manager for react but now the creators of redux offer toolkit and on the redux website it says [redux toolkit](https://redux-toolkit.js.org/) is intended to be the standard way to write redux logic and we strongly recommended that you use it. So moving forward redux toolkit is the modern application of redux that you should learn how to implement. 
+
 ```bash
 npm install @reduxjs/toolkit react-redux
 ```
 
 
-II. Create a Redux Store
-
+## II. Create a Redux Store
 app/store.js
 ```javascript
 import { configureStore } from '@reduxjs/toolkit'
@@ -22,8 +28,7 @@ reducer: {},
 ```
 
 
-III. Provide the Redux Store to React
-
+## III. Provide the Redux Store to React
 index.js
 ```javascript
 import React from 'react';
@@ -44,8 +49,7 @@ root.render(
 ```
 
 
-IV. Create a Redux State Slice
-
+## IV. Create a Redux State Slice
 Splitting up redux state object into multiple slices of state. So, a slice is really a collection of reducer logic of actions for a single feature in the app. 
 
 For example, a blog might have a slice for post and another 
@@ -85,8 +89,7 @@ export default counterSlice.reducer
 ```
 
 
-V. Add Slice Reducers to the Store
-
+## V. Add Slice Reducers to the Store
 > By defining a field inside the reducers parameter, we tell the store to use this slice reducer function to handle all updates to that state.
 
 app/store.js
@@ -102,8 +105,7 @@ export const store = configureStore({
 ```
 
 
-VI. Use Redux State and Actions in React Components
-
+## VI. Use Redux State and Actions in React Components
 > Read data from the store with useSelector, and dispatch actions using useDispatch. 
 
 features/counter/Counter.js
@@ -153,17 +155,21 @@ export default Counter
 ```
 
 
-VII. Output screen 
-
+## VII. Output screen 
 ![alt redux1](./img/redux1.jpg)
 
-
-VIII. Reference 
-1. [React Redux Quick Start](https://react-redux.js.org/tutorials/quick-start)
-2. [Redux Fundamentals, Part 1: Redux Overview](https://redux.js.org/tutorials/fundamentals/part-1-overview)
-3. [Redux Fundamentals, Part 2: Concepts and Data Flow](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow)
-4. [Redux Fundamentals, Part 3: State, Actions, and Reducers](https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers)
-5. [Redux in 100 Seconds](https://youtu.be/_shA5Xwe8_4)
+## Epilogue 
+Redux is not an answer; Redux a question. It opens a way to let you re-think how to manage and share application state. 
 
 
-## EOF (2022/12/16)
+## VIII. Reference 
+1. [React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial](https://youtu.be/NqzdVN2tyvQ)
+2. [Redux in 100 Seconds](https://youtu.be/_shA5Xwe8_4)
+3. [React Redux Quick Start](https://react-redux.js.org/tutorials/quick-start)
+4. [Redux Fundamentals, Part 1: Redux Overview](https://redux.js.org/tutorials/fundamentals/part-1-overview)
+5. [Redux Fundamentals, Part 2: Concepts and Data Flow](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow)
+6. [Redux Fundamentals, Part 3: State, Actions, and Reducers](https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers)
+
+
+
+## EOF (2022/12/18)
