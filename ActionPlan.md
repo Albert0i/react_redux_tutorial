@@ -159,7 +159,9 @@ export default Counter
 ![alt redux1](./img/redux1.jpg)
 
 ## Epilogue 
-Redux is not an answer; Redux a question. It opens a way to let you re-think how to manage and share application state. 
+Redux is not an answer; Redux a question. It opens a way to let you re-think how to manage and share application state. Each store has many features ([Separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns)), each feature is represented as slice (name, state and action), each slice exports actions (to be used by compoents) and reducer (to be used by store). Retrieving state from store and invoking action to *change* the store is only slightly different. 
+
+If you use [useContext](https://blog.webdevsimplified.com/2020-06/use-context/) then switching to Redux seems a better choice before your project grows larger and harder to manage.  
 
 
 ## VIII. Reference 
