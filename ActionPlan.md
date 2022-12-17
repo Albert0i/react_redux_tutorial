@@ -1,6 +1,7 @@
 
-# A mini extract from [React Redux Quick Start](https://react-redux.js.org/tutorials/quick-start) for *idiot*
+# An extract from [React Redux Quick Start](https://react-redux.js.org/tutorials/quick-start) for *idiot*
 
+![alt data brain](./img/data-brain.jpg)
 
 ## Prologue 
 How long can we live? A couple of decades, a couple of days, a couple of seconds... nobody knows... The only thing I know is **"Everything has a time"**. 
