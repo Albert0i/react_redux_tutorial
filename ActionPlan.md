@@ -89,6 +89,8 @@ export const { increment, decrement, reset, incrementByAmount } = counterSlice.a
 export default counterSlice.reducer
 ```
 
+The benefit here is that our component doesn't even have to know the structure of the state at all. All of that is now handled in the slice. 
+
 
 ## V. Add Slice Reducers to the Store
 > By defining a field inside the reducers parameter, we tell the store to use this slice reducer function to handle all updates to that state.
@@ -175,4 +177,4 @@ If you use [useContext](https://blog.webdevsimplified.com/2020-06/use-context/) 
 
 
 
-## EOF (2022/12/18)
+## EOF (2022/12/19)
