@@ -1,7 +1,7 @@
 
 # An extract from [React Redux Quick Start](https://react-redux.js.org/tutorials/quick-start) for *idiot*
 
-![alt data brain](./img/data-brain.jpg)
+[![alt Ghost_in_the_Shell_02.jpg](./img/Ghost_in_the_Shell_02.jpg)](https://madmuseum.org/events/ghost-shell)
 
 ## Prologue 
 How long can we live? A couple of decades, a couple of days, a couple of seconds... nobody knows... The only thing I know is **"Everything has a time"**. 
@@ -174,7 +174,7 @@ If you use [useContext](https://blog.webdevsimplified.com/2020-06/use-context/) 
 4. [Redux Fundamentals, Part 1: Redux Overview](https://redux.js.org/tutorials/fundamentals/part-1-overview)
 5. [Redux Fundamentals, Part 2: Concepts and Data Flow](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow)
 6. [Redux Fundamentals, Part 3: State, Actions, and Reducers](https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers)
+7. []
 
 
-
-## EOF (2022/12/19)
+## EOF (2022/12/26)
