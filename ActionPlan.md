@@ -123,6 +123,15 @@ The benefit here is that our component doesn't even have to know the structure o
 
 > Redux Toolkit's createReducer and createSlice automatically use [Immer](https://immerjs.github.io/immer/) internally to let you write simpler immutable update logic using "mutating" syntax. This helps simplify most reducer implementations.
 
+> **You can think of an action as an event that describes something that happened in the application.**
+
+> **You can think of a reducer as an event listener which handles events based on the received action (event) type.**
+
+> **You can think of dispatching actions as "triggering an event"** in the application. Reducers act like event listeners, and when they hear an action they are interested in, they update the state in response.
+
+INFO
+> "Reducer" functions get their name because they're similar to the kind of callback function you pass to the Array.reduce() method. The Array.reduce() method lets you take an array of values, process each item in the array one at a time, and return a single final result. You can think of it as "reducing the array down to one value". We can say that Redux reducers reduce a set of actions (over time) into a single state. The difference is that with Array.reduce() it happens all at once, and with Redux, it happens over the lifetime of your running app.
+
 
 ## V. Add Slice Reducers to the Store
 > By defining a field inside the reducers parameter, we tell the store to use this slice reducer function to handle all updates to that state.
@@ -157,12 +166,14 @@ import { useState } from "react"
 
 const Counter = () => {
     /*
-        In any application, the user interface will show existing state on screen.
+        Selectors are functions that know how to extract specific pieces of 
+        information from a store state value. 
     */
     const count = useSelector(state => state.counter.count)
     /* 
-       We need to respond to user input by creating action objects that describe what happened, 
-       and dispatching them to the store. 
+       The only way to update the state is to call dispatch() and pass in 
+       an action object. The store will run its reducer function and 
+       save the new state value inside, 
     */
     const dispatch = useDispatch()
     
@@ -172,7 +183,8 @@ const Counter = () => {
     const resetAll = ()=> {
         setIncrementAmount(0)
         /*
-           We'll dispatch the actions that will make the reducer reset the current counter value.
+           Dispatch the actions that will make the reducer reset 
+           the current counter value.
         */        
         dispatch(reset())
     }

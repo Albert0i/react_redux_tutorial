@@ -7,11 +7,14 @@ import { useState } from "react"
 
 const Counter = () => {
     /*
-        In any application, the user interface will show existing state on screen.
+        Selectors are functions that know how to extract specific pieces of
+        information from a store state value. 
     */
     const count = useSelector(state => state.counter.count)
     /* 
-       We need to respond to user input by creating action objects that describe what happened, and dispatching them to the store. 
+       The only way to update the state is to call dispatch() and pass in
+       an action object. The store will run its reducer function and        
+       save the new state value inside, 
     */
     const dispatch = useDispatch()
     
@@ -21,7 +24,8 @@ const Counter = () => {
     const resetAll = ()=> {
         setIncrementAmount(0)
         /*
-           We'll dispatch the actions that will make the reducer reset the current counter value.
+           Dispatch the actions that will make the reducer reset 
+           the current counter value.
         */        
         dispatch(reset())
     }
