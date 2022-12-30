@@ -11,6 +11,14 @@ If one can persist memory in a *vault*, *store* or some other devices so that on
 
 
 ## I. Install Redux Toolkit and React Redux
+First thing first, What is Redux?
+
+> **Redux is a pattern and library for managing and updating application state, using events called "actions".** It serves as a centralized store for state that needs to be used across your entire application, with rules ensuring that the state can only be updated in a predictable fashion.
+
+> Redux helps you manage "global" state - state that is needed across many parts of your application.
+
+> It's a trade-off between short term and long term productivity.
+
 [Redux](https://redux.js.org/) is the original *old school* state manager for react but now the creators of redux offer toolkit and on the redux website it says [redux toolkit](https://redux-toolkit.js.org/) is intended to be the standard way to write redux logic and we strongly recommended that you use it. So moving forward redux toolkit is the modern application of redux that you should learn how to implement. 
 
 ```bash
@@ -27,6 +35,15 @@ export default configureStore({
 reducer: {},
 })
 ```
+> A store is a JavaScript object with a few special functions and abilities that make it different than a plain global object:
+
+- You must never directly modify or change the state that is kept inside the Redux store
+
+- Instead, the only way to cause an update to the state is to create a plain **action** object that describes "something that happened in the application", and then **dispatch** the action to the store to tell it what happened.
+
+- When an action is dispatched, the store runs the root **reducer** function, and lets it calculate the new state based on the old state and the action
+
+- Finally, the store notifies **subscribers** that the state has been updated so the UI can be updated with the new data.
 
 
 ## III. Provide the Redux Store to React
@@ -63,13 +80,23 @@ features/counter/counterSlice.js
 ```javascript
 import { createSlice } from '@reduxjs/toolkit'
 
+/*
+   Define an initial state value for the app
+   Redux apps normally have a JS object as the root piece of the state, 
+   with other values inside that object.
+*/
 const initialState = {
     count: 0
 }
+
 export const counterSlice = createSlice({
     name: 'counter',
     initialState, 
     reducers: {
+        /*
+           Reducers is defined by specifying action with current state arguments, 
+           which describes what happened. 
+        */        
         increment: (state) => {
             state.count++; 
         },
@@ -85,7 +112,10 @@ export const counterSlice = createSlice({
     }
 })
 
+// Export actions (to be used by out app)
 export const { increment, decrement, reset, incrementByAmount } = counterSlice.actions 
+
+// Export reducer (to be used by the store)
 export default counterSlice.reducer
 ```
 
@@ -97,8 +127,11 @@ The benefit here is that our component doesn't even have to know the structure o
 
 app/store.js
 ```javascript
+import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from '../features/counter/counterSlice'
 
+// Create a new Redux store with the `createStore` function,
+// and use the `counterReducer` for the update logic
 export const store = configureStore({
     reducer: {
         counter: counterReducer
@@ -114,12 +147,21 @@ export const store = configureStore({
 features/counter/Counter.js
 ```javascript
 import { useSelector, useDispatch } from "react-redux"
-import { increment, decrement, 
-         reset, incrementByAmount } from './counterSlice'
+import { increment, 
+         decrement, 
+         reset, 
+         incrementByAmount } from './counterSlice'  // Actions 
 import { useState } from "react"
 
 const Counter = () => {
+    /*
+        In any application, the user interface will show existing state on screen.
+    */
     const count = useSelector(state => state.counter.count)
+    /* 
+       We need to respond to user input by creating action objects that describe what happened, 
+       and dispatching them to the store. 
+    */
     const dispatch = useDispatch()
     
     const [ incrementAmount, setIncrementAmount ] = useState(0)
@@ -127,6 +169,9 @@ const Counter = () => {
     
     const resetAll = ()=> {
         setIncrementAmount(0)
+        /*
+           We'll dispatch the actions that will make the reducer reset the current counter value.
+        */        
         dispatch(reset())
     }
 
@@ -161,6 +206,19 @@ export default Counter
 ## VII. Output screen 
 ![alt redux1](./img/redux1.jpg)
 
+We can summarize the flow of data through a Redux app with this diagram. It represents how:
+
+- actions are dispatched in response to a user interaction like a click
+
+- the store runs the reducer function to calculate a new state
+
+- the UI reads the new state to display the new values
+
+![alt Data Flow](./img/ReduxDataFlowDiagram.gif)
+
+That counter example was small, but it does show all the working pieces of a real Redux app. 
+
+
 ## Epilogue 
 Redux is not an answer; Redux a question. It opens a way to let you re-think how to manage and share application state. Each store has many features ([Separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns)), each feature is represented as slice (name, state and action), each slice exports actions (to be used by compoents) and reducer (to be used by store). Retrieving state from store and invoking action to *change* the store is only slightly different. 
 
@@ -174,7 +232,7 @@ If you use [useContext](https://blog.webdevsimplified.com/2020-06/use-context/) 
 4. [Redux Fundamentals, Part 1: Redux Overview](https://redux.js.org/tutorials/fundamentals/part-1-overview)
 5. [Redux Fundamentals, Part 2: Concepts and Data Flow](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow)
 6. [Redux Fundamentals, Part 3: State, Actions, and Reducers](https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers)
-7. []
+7. [Redux Fundamentals](https://redux.js.org/tutorials/fundamentals/part-1-overview)
 
 
-## EOF (2022/12/26)
+## EOF (2022/12/30)

@@ -1,12 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+/*
+   Define an initial state value for the app
+   Redux apps normally have a JS object as the root piece of the state, with other values inside that object.
+*/
 const initialState = {
     count: 0
 }
+
 export const counterSlice = createSlice({
     name: 'counter',
     initialState, 
     reducers: {
+        /*
+           Reducers is defined by specifying action with current state arguments, which describes what happened. 
+        */        
         increment: (state) => {
             state.count++; 
         },
@@ -22,7 +30,10 @@ export const counterSlice = createSlice({
     }
 })
 
+// Export actions (to be used by out app)
 export const { increment, decrement, reset, incrementByAmount } = counterSlice.actions 
+
+// Export reducer (to be used by the store)
 export default counterSlice.reducer
 
 /*
