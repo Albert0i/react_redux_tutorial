@@ -168,12 +168,16 @@ const Counter = () => {
     /*
         Selectors are functions that know how to extract specific pieces of 
         information from a store state value. 
+        They also subscribe to any future store updates so they can know 
+        if the state has changed.
     */
     const count = useSelector(state => state.counter.count)
     /* 
        The only way to update the state is to call dispatch() and pass in 
        an action object. The store will run its reducer function and 
-       save the new state value inside, 
+       save the new state value inside. 
+       The store notifies all parts of the UI that are subscribed 
+       that the store has been updated. 
     */
     const dispatch = useDispatch()
     
@@ -243,10 +247,6 @@ If you use [useContext](https://blog.webdevsimplified.com/2020-06/use-context/) 
 1. [React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial](https://youtu.be/NqzdVN2tyvQ)
 2. [Redux in 100 Seconds](https://youtu.be/_shA5Xwe8_4)
 3. [React Redux Quick Start](https://react-redux.js.org/tutorials/quick-start)
-4. [Redux Fundamentals, Part 1: Redux Overview](https://redux.js.org/tutorials/fundamentals/part-1-overview)
-5. [Redux Fundamentals, Part 2: Concepts and Data Flow](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow)
-6. [Redux Fundamentals, Part 3: State, Actions, and Reducers](https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers)
-7. [Redux Fundamentals](https://redux.js.org/tutorials/fundamentals/part-1-overview)
-
+4. [Redux Fundamentals, Part 8: Modern Redux with Redux Toolkit](https://redux.js.org/tutorials/fundamentals/part-8-modern-redux)
 
 ## EOF (2022/12/30)

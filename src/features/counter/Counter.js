@@ -9,12 +9,16 @@ const Counter = () => {
     /*
         Selectors are functions that know how to extract specific pieces of
         information from a store state value. 
+        They also subscribe to any future store updates so they can know 
+        if the state has changed.
     */
     const count = useSelector(state => state.counter.count)
     /* 
        The only way to update the state is to call dispatch() and pass in
        an action object. The store will run its reducer function and        
-       save the new state value inside, 
+       save the new state value inside.
+       The store notifies all parts of the UI that are subscribed 
+       that the store has been updated. 
     */
     const dispatch = useDispatch()
     
