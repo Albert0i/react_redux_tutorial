@@ -68,7 +68,7 @@ root.render(
 
 
 ## IV. Create a Redux State Slice
-Splitting up redux state object into multiple slices of state. So, a slice is really a collection of reducer logic of actions for a single feature in the app. 
+Splitting up redux state object into multiple slices of state. So, a slice is really a collection of reducer logic of actions for a single feature in the app. (check [createSlice](https://redux-toolkit.js.org/api/createslice) for details)
 
 For example, a blog might have a slice for post and another 
 slice for comment to handle the logic of each differently. 
@@ -120,6 +120,8 @@ export default counterSlice.reducer
 ```
 
 The benefit here is that our component doesn't even have to know the structure of the state at all. All of that is now handled in the slice. 
+
+> Redux Toolkit's createReducer and createSlice automatically use [Immer](https://immerjs.github.io/immer/) internally to let you write simpler immutable update logic using "mutating" syntax. This helps simplify most reducer implementations.
 
 
 ## V. Add Slice Reducers to the Store
