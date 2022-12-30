@@ -1,4 +1,4 @@
-import './style.css'
+import './PokemonApp.css'
 import { Pokemon } from './features/pokemon/Pokemon'
 import { useState } from 'react'
 
