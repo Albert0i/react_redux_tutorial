@@ -8,10 +8,11 @@ export const apiSlice = createApi({
         getTodos: builder.query({
             query: ( { page, limit } ) => `/todos?_page=${page}&_limit=${limit}&_sort=id&_order=desc`,
             transformResponse(res, meta) {
-                return { data: res, 
-                    totalCount: Number(meta.response.headers.get('X-Total-Count')),
-                    headerLink: String(meta.response.headers.get("Link"))
-                 }
+                return ({ 
+                            data: res, 
+                            totalCount: Number(meta.response.headers.get('X-Total-Count')),
+                            headerLink: String(meta.response.headers.get("Link"))
+                        })
               },
             providesTags: ['Todos']
         }),
@@ -62,4 +63,6 @@ export const {
    Pagination in React Tutorial with React Query, Hooks Examples
    https://youtu.be/9ZbdwL5NSuQ
 
+   30 Motivational Quotes of the Day to Get you Motivated
+   https://www.invajy.com/motivational-quotes-of-the-day/
 */
