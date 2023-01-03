@@ -99,7 +99,7 @@ const TodoList = () => {
             {newItemSection}
             {nav}
             {content}
-            { todos && `Total Todos is ${todos.totalCount}`}
+            { todos && <p>Total Todos is {todos.totalCount}</p> }
         </main>
     )
 }

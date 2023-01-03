@@ -6,7 +6,9 @@ export const apiSlice = createApi({
     tagTypes: ['Todos'],
     endpoints: (builder) => ({
         getTodos: builder.query({
+            // Original was: "query: () => '/todos',"
             query: ( { page, limit } ) => `/todos?_page=${page}&_limit=${limit}&_sort=id&_order=desc`,
+            // Original was: "transformResponse: res => res.sort((a, b) => b.id - a.id), ""
             transformResponse(res, meta) {
                 return ({ 
                             data: res, 
@@ -36,7 +38,7 @@ export const apiSlice = createApi({
             query: ({ id }) => ({
                 url: `/todos/${id}`,
                 method: 'DELETE',
-                body: id
+                body: { id }    // original was: ＂body: id＂
             }),
             invalidatesTags: ['Todos']
         }),
@@ -63,6 +65,6 @@ export const {
    Pagination in React Tutorial with React Query, Hooks Examples
    https://youtu.be/9ZbdwL5NSuQ
 
-   30 Motivational Quotes of the Day to Get you Motivated
+   130 Motivational Quotes of the Day to Get you Motivated
    https://www.invajy.com/motivational-quotes-of-the-day/
 */
