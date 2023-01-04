@@ -22,13 +22,18 @@ const TodoList = () => {
         isError,
         error
     } = useGetTodosQuery( { page, limit } )
-    const [addTodo] = useAddTodoMutation()
+    const [addTodo ] = useAddTodoMutation()
     const [updateTodo] = useUpdateTodoMutation()
     const [deleteTodo] = useDeleteTodoMutation()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        addTodo({ userId: 1, title: newTodo, completed: false })
+        try {
+            await addTodo({ userId: 1, title: newTodo, completed: false }).unwrap()
+        }
+        catch (err) {
+            console.error('Failed to save todo', err.message)
+        }
         setNewTodo('')
     }
 
@@ -54,8 +59,12 @@ const TodoList = () => {
     if (isLoading) {
         content = <p>Loading...</p>
     } else if (isSuccess) {
+        const { ids, entities } = todos
+        //console.log(ids)
+        //console.log(entities)
+
         // Pagination logic
-        const total_pages = Math.ceil( todos.entities[todos.ids[0]].totalCount / limit)
+        const total_pages = Math.ceil( entities[ids[0]].totalCount / limit)
         const lastPage = () => setPage(total_pages)
         const firstPage = () => setPage(1)
         const pagesArray = Array(total_pages).fill().map((_, index) => index + 1)
@@ -68,18 +77,18 @@ const TodoList = () => {
             </nav>
         )
         // Pagination logic
-        
-        content = todos.ids.map(id => {
+
+        content = ids.map(id => {
             return (
                 <article key={id}>
                     <div className="todo">
                         <input
                             type="checkbox"
-                            checked={todos.entities[id].completed}
+                            checked={entities[id].completed}
                             id={id}
-                            onChange={() => updateTodo({ ...todos.entities[id], completed: !todos.entities[id].completed })}
+                            onChange={() => updateTodo({ ...entities[id], completed: !entities[id].completed })}
                         />
-                        <label htmlFor={todos.entities[id]}>{todos.entities[id].title}</label>
+                        <label htmlFor={entities[id]}>{entities[id].title}</label>
                     </div>
                     <button className="trash" onClick={() => deleteTodo({ id })}>
                         <FontAwesomeIcon icon={faTrash} />
@@ -97,7 +106,8 @@ const TodoList = () => {
             {newItemSection}
             {nav}
             {content}
-            { todos && <p>Total Todos is {todos.entities[todos.ids[0]].totalCount}</p> }
+            {/* { todos && <p>Total Todos is {todos.entities[todos.ids[0]].totalCount}</p> } */}
+            { todos && <p>Total Todos is { todos.entities[todos.ids[0]].totalCount }</p> }
         </main>
     )
 }
