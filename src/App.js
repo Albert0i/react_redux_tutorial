@@ -1,9 +1,11 @@
+import Counter from './features/counter/Counter';
 import TodosList from './features/todos/TodosList';
 
 function App() {
   return (
     <div className="App">
       <TodosList />
+      <Counter />
     </div>
   );
 }

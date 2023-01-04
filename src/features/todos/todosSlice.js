@@ -10,22 +10,8 @@ const initialState = todosAdapter.getInitialState()
 export const extendedAdapterSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
       getTodos: builder.query({
-          // Original was: "query: () => '/todos',"
           query: ( { page, limit } ) => `/todos?_page=${page}&_limit=${limit}&_sort=id&_order=desc`,
-          // Original was: "transformResponse: res => res.sort((a, b) => b.id - a.id), ""
           transformResponse(res, meta) {
-              // Original was: 
-              // return ({ 
-              //             data: res, 
-              //             totalCount: Number(meta.response.headers.get('X-Total-Count')),
-              //             headerLink: String(meta.response.headers.get("Link"))
-              //         })
-            //   return todosAdapter.setAll(initialState, ({ 
-            //             data: res,  
-            //             totalCount: Number(meta.response.headers.get('X-Total-Count')),
-            //             headerLink: String(meta.response.headers.get("Link")) 
-            //           }))                              
-            //    res.totalCount=Number(meta.response.headers.get('X-Total-Count'))
                 const saltedTodos = res.map(todo => {
                         todo.totalCount=Number(meta.response.headers.get('X-Total-Count'))
                         return todo;
