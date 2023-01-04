@@ -1,14 +1,13 @@
-//import React from 'react'
-import { createSelector, createEntityAdapter } from '@reduxjs/toolkit'
-import { apiSliceRoot } from './apiSliceRoot'
+import { createEntityAdapter } from "@reduxjs/toolkit";
+import { apiSlice } from "../api/apiSlice";
 
 const todosAdapter = createEntityAdapter({
   sortComparer: (a, b) => b.id - a.id
 })
 
-const initialState = todosAdapter.getInitialState()
+const initialState = todosAdapter.getInitialState() 
 
-export const extendedAdapterSlice = apiSliceRoot.injectEndpoints({
+export const extendedAdapterSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
       getTodos: builder.query({
           // Original was: "query: () => '/todos',"
@@ -21,14 +20,20 @@ export const extendedAdapterSlice = apiSliceRoot.injectEndpoints({
               //             totalCount: Number(meta.response.headers.get('X-Total-Count')),
               //             headerLink: String(meta.response.headers.get("Link"))
               //         })
-              return todosAdapter.setAll(initialState, ({ 
-                        data: res,  
-                        totalCount: Number(meta.response.headers.get('X-Total-Count')),
-                        headerLink: String(meta.response.headers.get("Link")) 
-                      }))
+            //   return todosAdapter.setAll(initialState, ({ 
+            //             data: res,  
+            //             totalCount: Number(meta.response.headers.get('X-Total-Count')),
+            //             headerLink: String(meta.response.headers.get("Link")) 
+            //           }))                              
+            //    res.totalCount=Number(meta.response.headers.get('X-Total-Count'))
+                const saltedTodos = res.map(todo => {
+                        todo.totalCount=Number(meta.response.headers.get('X-Total-Count'))
+                        return todo;
+                });
+                return todosAdapter.setAll(initialState, saltedTodos)
             },
             providesTags: (result, error, arg) => [
-                { type: 'Todo', id: "LIST" },
+                { type: 'Todos', id: "LIST" },
                 ...result.ids.map(id => ({ type: 'Todo', id }))
             ]
       }),
@@ -65,21 +70,3 @@ export const {
   useUpdateTodoMutation,
   useDeleteTodoMutation
 } = extendedAdapterSlice
-
-
-// returns the query result object
-export const selectTodosResult = extendedAdapterSlice.endpoints.getTodos.select()
-
-// Creates memoized selector
-const selectTodosData = createSelector(
-    selectTodosResult,
-    todosResult => todosResult.data // normalized state object with ids & entities
-)
-
-//getSelectors creates these selectors and we rename them with aliases using destructuring
-export const {
-    selectAll: selectAllTodos,
-    selectById: selectTodoById,
-    selectIds: selectTodoIds
-    // Pass in a selector that returns the todos slice of state
-} = todosAdapter.getSelectors(state => selectTodosData(state) ?? initialState)

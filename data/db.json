@@ -46,7 +46,8 @@
       "userId": 1,
       "id": 8,
       "title": "“The best way to get started is to quit talking and begin doing.” ~ Walt Disney",
-      "completed": true
+      "completed": true,
+      "totalCount": 13
     },
     {
       "userId": 1,
@@ -76,7 +77,7 @@
       "userId": 1,
       "id": 13,
       "title": "“Life is not about waiting for the storm to pass; it is about learning to dance in the rain.” ~ Vivian Greene",
-      "completed": true
+      "completed": false
     }
   ]
 }

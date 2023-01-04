@@ -1,9 +1,9 @@
 import {
-    useGetTodosQuery,
+    useGetTodosQuery, 
     useUpdateTodoMutation,
     useDeleteTodoMutation,
     useAddTodoMutation
-} from "../api/apiSlice"
+} from "./todosSlice"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
@@ -55,9 +55,7 @@ const TodoList = () => {
         content = <p>Loading...</p>
     } else if (isSuccess) {
         // Pagination logic
-        //console.log(`totalCount=${todos.totalCount}`)
-        const total_pages = Math.ceil(todos.totalCount / limit)
-        //console.log(`total_pages=${total_pages}`)
+        const total_pages = Math.ceil( todos.entities[todos.ids[0]].totalCount / limit)
         const lastPage = () => setPage(total_pages)
         const firstPage = () => setPage(1)
         const pagesArray = Array(total_pages).fill().map((_, index) => index + 1)
@@ -70,20 +68,20 @@ const TodoList = () => {
             </nav>
         )
         // Pagination logic
-
-        content = todos.data.map(todo => { //JSON.stringify(todos)
+        
+        content = todos.ids.map(id => {
             return (
-                <article key={todo.id}>
+                <article key={id}>
                     <div className="todo">
                         <input
                             type="checkbox"
-                            checked={todo.completed}
-                            id={todo.id}
-                            onChange={() => updateTodo({ ...todo, completed: !todo.completed })}
+                            checked={todos.entities[id].completed}
+                            id={id}
+                            onChange={() => updateTodo({ ...todos.entities[id], completed: !todos.entities[id].completed })}
                         />
-                        <label htmlFor={todo.id}>{todo.title}</label>
+                        <label htmlFor={todos.entities[id]}>{todos.entities[id].title}</label>
                     </div>
-                    <button className="trash" onClick={() => deleteTodo({ id: todo.id })}>
+                    <button className="trash" onClick={() => deleteTodo({ id })}>
                         <FontAwesomeIcon icon={faTrash} />
                     </button>
                 </article>
@@ -99,7 +97,7 @@ const TodoList = () => {
             {newItemSection}
             {nav}
             {content}
-            { todos && <p>Total Todos is {todos.totalCount}</p> }
+            { todos && <p>Total Todos is {todos.entities[todos.ids[0]].totalCount}</p> }
         </main>
     )
 }

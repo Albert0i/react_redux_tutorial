@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { apiSliceRoot } from '../features/api/apiSliceRoot'
-//import { extendedAdapterSlice } from '../features/api/extendedAdapterSlice'
+import counterSlice from "../features/counter/counterSlice";
+import { apiSlice } from '../features/api/apiSlice';
 
 // Create a new Redux store with the `createStore` function,
 export const store = configureStore({
     reducer: {
-        [apiSliceRoot.reducerPath]: apiSliceRoot.reducer
+        counterSlice, 
+        [apiSlice.reducerPath]: apiSlice.reducer
     },
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(apiSliceRoot.middleware),
+    middleware: getDefaultMiddleware =>
+        getDefaultMiddleware().concat(apiSlice.middleware),
     devTools: true
 })
