@@ -248,5 +248,6 @@ If you use [useContext](https://blog.webdevsimplified.com/2020-06/use-context/) 
 2. [Redux in 100 Seconds](https://youtu.be/_shA5Xwe8_4)
 3. [React Redux Quick Start](https://react-redux.js.org/tutorials/quick-start)
 4. [Redux Fundamentals, Part 8: Modern Redux with Redux Toolkit](https://redux.js.org/tutorials/fundamentals/part-8-modern-redux)
+5. [RTK Query Overview](https://redux.js.org/tutorials/fundamentals/part-8-modern-redux)
 
-## EOF (2022/12/30)
+## EOF (2023/01/06)
