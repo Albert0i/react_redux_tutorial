@@ -245,12 +245,11 @@ If you use [useContext](https://blog.webdevsimplified.com/2020-06/use-context/) 
 
 ## VIII. Reference 
 1. [React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial](https://youtu.be/NqzdVN2tyvQ)
-2. [Redux in 100 Seconds](https://youtu.be/_shA5Xwe8_4)
-3. [React Redux Quick Start](https://react-redux.js.org/tutorials/quick-start)
-4. [Redux Fundamentals, Part 8: Modern Redux with Redux Toolkit](https://redux.js.org/tutorials/fundamentals/part-8-modern-redux)
-5. [RTK Query Overview](https://redux-toolkit.js.org/rtk-query/overview)
-6. [Redux Essentials, Part 6: Performance and Normalizing Data](https://redux.js.org/tutorials/essentials/part-6-performance-normalization)
-7. [Redux Essentials, Part 8: RTK Query Advanced Patterns](https://redux.js.org/tutorials/essentials/part-8-rtk-query-advanced)
-8. [130 Motivational Quotes of the Day to Get you Motivated](https://www.invajy.com/motivational-quotes-of-the-day/)
+2. [React Redux Quick Start](https://react-redux.js.org/tutorials/quick-start)
+3. [Redux Fundamentals, Part 8: Modern Redux with Redux Toolkit](https://redux.js.org/tutorials/fundamentals/part-8-modern-redux)
+4. [RTK Query Overview](https://redux-toolkit.js.org/rtk-query/overview)
+5. [Redux Essentials, Part 6: Performance and Normalizing Data](https://redux.js.org/tutorials/essentials/part-6-performance-normalization)
+6. [Redux Essentials, Part 8: RTK Query Advanced Patterns](https://redux.js.org/tutorials/essentials/part-8-rtk-query-advanced)
+7. [130 Motivational Quotes of the Day to Get you Motivated](https://www.invajy.com/motivational-quotes-of-the-day/)
 
 ## EOF (2023/01/06)
