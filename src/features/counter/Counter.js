@@ -11,6 +11,10 @@ const Counter = () => {
         information from a store state value. 
         They also subscribe to any future store updates so they can know 
         if the state has changed.
+    
+        In our slice, we provided the name property as 'counter'
+        and the initialState with a 'value' property
+        thus to read our data, we need useSelector to return the state.counter.value
     */
     const count = useSelector(state => state.counter.count)
     /* 
