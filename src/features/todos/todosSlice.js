@@ -32,6 +32,10 @@ export const extendedAdapterSlice = apiSlice.injectEndpoints({
                 ...result.ids.map(id => ({ type: 'Todos', id }))
             ]
       }),
+      getTodoById: builder.query({
+        query: ( id ) => `/todos?id=${id}`,
+        transformResponse: res => res && res[0]
+      }), 
       addTodo: builder.mutation({
           query: (todo) => ({
               url: '/todos',
@@ -67,6 +71,7 @@ export const extendedAdapterSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetTodosQuery,
+  useGetTodoByIdQuery, 
   useAddTodoMutation,
   useUpdateTodoMutation,
   useDeleteTodoMutation
