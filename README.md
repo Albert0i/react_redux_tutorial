@@ -21,6 +21,8 @@ First thing first, What is Redux?
 
 [Redux](https://redux.js.org/) is the original *old school* state manager for react but now the creators of redux offer toolkit and on the redux website it says [redux toolkit](https://redux-toolkit.js.org/) is intended to be the standard way to write redux logic and we strongly recommended that you use it. So moving forward redux toolkit is the modern application of redux that you should learn how to implement. 
 
+You only need two npm packages.
+
 ```bash
 npm install @reduxjs/toolkit react-redux
 ```
@@ -35,6 +37,16 @@ export default configureStore({
 reducer: {},
 })
 ```
+> configureStore is only accepting **one** parameter, which is an **Object** called <code>ConfigureStoreOptions</code>, which has several attributes (? means optional):
+
+- reducers
+- middleware​?
+- devTools​?
+- preloadedState​?
+- enhancers​?
+
+> the most important and easy to understand are <code>reducers</code>, <code>devTools</code>, and <code>preloadedState</code>. 
+
 > A store is a JavaScript object with a few special functions and abilities that make it different than a plain global object:
 
 - You must never directly modify or change the state that is kept inside the Redux store
@@ -47,6 +59,9 @@ reducer: {},
 
 
 ## III. Provide the Redux Store to React
+
+> Wrap your <code>&lt;App /&gt;</code> component with the <code>Provider</code> and include the store that you made recently.
+
 index.js
 ```javascript
 import React from 'react';
@@ -75,6 +90,8 @@ slice for comment to handle the logic of each differently.
 So they each get their own slice. 
 
 > Creating a slice requires a string name to identify the slice, an initial state value, and one or more reducer functions to define how the state can be updated. Once a slice is created, we can export the generated Redux action creators and the reducer function for the whole slice.
+
+> Redux itself does not care about how your application's folders and files are structured. However, co-locating logic for a given feature in one place typically makes it easier to maintain that code. Redux.org recommend that most applications should structure files using a **"feature folder"** approach (all files for a feature in the same folder) or the "ducks" pattern (all Redux logic for a feature in a single file), rather than splitting logic across separate folders by "type" of code (reducers, actions, etc).
 
 features/counter/counterSlice.js
 ```javascript
@@ -132,6 +149,13 @@ The benefit here is that our component doesn't even have to know the structure o
 INFO
 > "Reducer" functions get their name because they're similar to the kind of callback function you pass to the Array.reduce() method. The Array.reduce() method lets you take an array of values, process each item in the array one at a time, and return a single final result. You can think of it as "reducing the array down to one value". We can say that Redux reducers reduce a set of actions (over time) into a single state. The difference is that with Array.reduce() it happens all at once, and with Redux, it happens over the lifetime of your running app.
 
+INFO
+> With createSlice, we don't need to implement the Redux reducer manually. However, there is something that you need to keep in mind. Redux Toolkit's createSlice is built-in with [Immer](https://immerjs.github.io/immer/). 
+
+> When we want to update React state, we can't mutate the state. Therefore, we need to create completely new data to update the state. This is the same paradigm in conventional Redux. However, Immer makes our life easier. We can mutate the state directly. 
+
+> Mutating the state is not the only way to update the state, we can also use the Redux immutable concept, which is using return
+
 
 ## V. Add Slice Reducers to the Store
 > By defining a field inside the reducers parameter, we tell the store to use this slice reducer function to handle all updates to that state.
@@ -145,6 +169,7 @@ import counterReducer from '../features/counter/counterSlice'
 // and use the `counterReducer` for the update logic
 export const store = configureStore({
     reducer: {
+        // state.counter comes from this attribute name. 
         counter: counterReducer
     }
 
@@ -154,6 +179,8 @@ export const store = configureStore({
 
 ## VI. Use Redux State and Actions in React Components
 > Read data from the store with useSelector, and dispatch actions using useDispatch. 
+
+> Just remember that concept **get** and **set**. In Redux, we can think that <code>get</code> is a <code>selector</code>, and <code>set</code> is a <code>dispatch</code>. 
 
 features/counter/Counter.js
 ```javascript
@@ -173,7 +200,9 @@ const Counter = () => {
     
         In our slice, we provided the name property as 'counter'
         and the initialState with a 'value' property
-        thus to read our data, we need useSelector to return the state.counter.value
+        thus to read our data, we need useSelector to return the state.counter.value.
+
+        'counter' comes from the reducer attribute name in configureStore
     */
     const count = useSelector(state => state.counter.count)
     /* 
@@ -210,6 +239,7 @@ const Counter = () => {
                />
 
         <div>
+            {/* action only receive one parameter, which is payload */}
             <button onClick={ ()=> dispatch(incrementByAmount(addValue)) }>
                 Add Amount
             </button>
@@ -254,6 +284,9 @@ If you use [useContext](https://blog.webdevsimplified.com/2020-06/use-context/) 
 4. [RTK Query Overview](https://redux-toolkit.js.org/rtk-query/overview)
 5. [Redux Essentials, Part 6: Performance and Normalizing Data](https://redux.js.org/tutorials/essentials/part-6-performance-normalization)
 6. [Redux Essentials, Part 8: RTK Query Advanced Patterns](https://redux.js.org/tutorials/essentials/part-8-rtk-query-advanced)
-7. [130 Motivational Quotes of the Day to Get you Motivated](https://www.invajy.com/motivational-quotes-of-the-day/)
+7. [How To Setup Redux with Redux Toolkit](https://www.softkraft.co/how-to-setup-redux-with-redux-toolkit/)
+8. [Redux Toolkit Setup Tutorial](https://dev.to/raaynaldo/redux-toolkit-setup-tutorial-5fjf)
+9. [RTK Query Tutorial (CRUD)](https://dev.to/raaynaldo/rtk-query-tutorial-crud-51hl)
+10. [130 Motivational Quotes of the Day to Get you Motivated](https://www.invajy.com/motivational-quotes-of-the-day/)
 
 ## EOF (2023/01/06)

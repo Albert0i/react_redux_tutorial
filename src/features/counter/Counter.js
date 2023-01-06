@@ -14,7 +14,9 @@ const Counter = () => {
     
         In our slice, we provided the name property as 'counter'
         and the initialState with a 'value' property
-        thus to read our data, we need useSelector to return the state.counter.value
+        thus to read our data, we need useSelector to return the state.counter.value.
+
+        'counter' comes from the reducer attribute name in configureStore
     */
     const count = useSelector(state => state.counter.count)
     /* 
@@ -51,6 +53,7 @@ const Counter = () => {
                />
 
         <div>
+            {/* action only receive one parameter, which is payload */}
             <button onClick={ ()=> dispatch(incrementByAmount(addValue)) }>
                 Add Amount
             </button>

@@ -5,7 +5,9 @@ import { apiSlice } from '../features/api/apiSlice';
 // Create a new Redux store with the `createStore` function,
 export const store = configureStore({
     reducer: {
+        // state.counter comes from this attribute name. 
         counter: counterReducer, 
+
         [apiSlice.reducerPath]: apiSlice.reducer
     },
     middleware: getDefaultMiddleware =>
