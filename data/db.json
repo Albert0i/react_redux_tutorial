@@ -78,7 +78,7 @@
       "userId": 1,
       "id": 13,
       "title": "“Life is not about waiting for the storm to pass; it is about learning to dance in the rain.” ~ Vivian Greene",
-      "completed": false,
+      "completed": true,
       "totalCount": 13
     }
   ]

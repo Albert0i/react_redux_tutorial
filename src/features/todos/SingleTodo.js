@@ -1,34 +1,27 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
-import { useState } from "react"
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import {
-    useGetTodoByIdQuery, 
     useUpdateTodoMutation,
     useDeleteTodoMutation,
-    useAddTodoMutation
 } from "./todosSlice"
 
-const SingleTodo = ({ id }) => {
-    const {
-        data: todo,
-        isLoading
-    } = useGetTodoByIdQuery( id )
+const SingleTodo = ({ todo }) => {
     const [updateTodo] = useUpdateTodoMutation()
     const [deleteTodo] = useDeleteTodoMutation()
 
-    return (!isLoading && 
-            <article key={id}>
+    return (
+            <article key={todo.id}>
                 <div className="todo">
                     <input
                         type="checkbox"
                         checked={todo.completed}
-                        id={id}
+                        id={todo.idid}
                         onChange={() => updateTodo({ ...todo, completed: !todo.completed })}
                     />
                     <label htmlFor={todo.id}>{todo.title}</label>
                 </div>
-                <button className="trash" onClick={() => deleteTodo({ id })}>
+                <button className="trash" onClick={() => deleteTodo({ id: todo.id })}>
                          <FontAwesomeIcon icon={faTrash} />
                 </button>
             </article>
