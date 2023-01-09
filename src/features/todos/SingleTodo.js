@@ -17,7 +17,7 @@ const SingleTodo = ({ todo }) => {
                         type="checkbox"
                         checked={todo.completed}
                         id={todo.idid}
-                        onChange={() => updateTodo({ ...todo, completed: !todo.completed })}
+                        onChange={() => updateTodo({ ...todo, completed: !todo.completed , title: todo.title + '+'})}
                     />
                     <label htmlFor={todo.id}>{todo.title}</label>
                 </div>
