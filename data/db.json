@@ -4,8 +4,7 @@
       "userId": 1,
       "id": 1,
       "title": "“If your voice is high, only a few people will hear. If your thought is high, then many people will listen.” ~ Invajy",
-      "completed": false,
-      "totalCount": 13
+      "completed": false
     },
     {
       "userId": 1,
@@ -47,8 +46,7 @@
       "userId": 1,
       "id": 8,
       "title": "“The best way to get started is to quit talking and begin doing.” ~ Walt Disney",
-      "completed": true,
-      "totalCount": 13
+      "completed": true
     },
     {
       "userId": 1,
@@ -77,16 +75,14 @@
     {
       "userId": 1,
       "id": 13,
-      "title": "“Life is not about waiting for the storm to pass; it is about learning to dance in the rain.” ~ Vivian Greene++",
-      "completed": true,
-      "totalCount": 13
+      "title": "“Life is not about waiting for the storm to pass; it is about learning to dance in the rain.” ~ Vivian Greene",
+      "completed": true
     },
     {
       "userId": 1,
-      "title": "“If the only tool you have is a hammer,  you tend to see every problem as a nail.”++",
-      "completed": false,
-      "id": 14,
-      "totalCount": 14
+      "title": "“If the only tool you have is a hammer,  you tend to see every problem as a nail.”",
+      "completed": true,
+      "id": 14
     }
   ]
 }

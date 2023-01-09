@@ -9,6 +9,12 @@ import {
 const SingleTodo = ({ todo }) => {
     const [updateTodo] = useUpdateTodoMutation()
     const [deleteTodo] = useDeleteTodoMutation()
+    
+    const myUpdateTodo = (todo) => {  
+        // Remove totalCount, if any... 
+        const { totalCount, ...todoClean } = todo
+        updateTodo({ ...todoClean, completed: !todoClean.completed , title: todoClean.title + '+'})
+    }
 
     return (
             <article key={todo.id}>
@@ -17,7 +23,7 @@ const SingleTodo = ({ todo }) => {
                         type="checkbox"
                         checked={todo.completed}
                         id={todo.idid}
-                        onChange={() => updateTodo({ ...todo, completed: !todo.completed , title: todo.title + '+'})}
+                        onChange={() => myUpdateTodo(todo) }
                     />
                     <label htmlFor={todo.id}>{todo.title}</label>
                 </div>
