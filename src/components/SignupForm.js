@@ -42,6 +42,7 @@ import React from 'react';
          .required('Required'),
        email: Yup.string().email('Invalid email address').required('Required'),
      }),
+     // validate,
      onSubmit: values => {
        alert(JSON.stringify(values, null, 2));
      },
