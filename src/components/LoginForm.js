@@ -4,9 +4,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import "./styles.css";
 
 const LoginForm = () => (
-
     <section className="login">
-    <h1>Any place in your app!</h1>
+      <h1>Any place in your app!</h1>
       <Formik
         initialValues={{ email: '', password: '' }}
         validate={values => {
