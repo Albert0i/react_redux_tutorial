@@ -2,12 +2,13 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import "./styles.css";
+import { MyRadiobutton } from './MyRadiobutton'
 
 const LoginForm = () => (
     <section className="login">
       <h1>Any place in your app!</h1>
       <Formik
-        initialValues={{ email: '', password: '', gender: 'Male' }}
+        initialValues={{ email: '', password: '', gender: "Male" }}
         validate={values => {
           const errors = {};
           if (!values.email) {
@@ -33,6 +34,30 @@ const LoginForm = () => (
 
             <Field type="password" name="password" />
             <ErrorMessage name="password" component="div" />
+
+            <fieldset>
+              <legend>
+                Please choose
+              </legend>
+              <Field
+                component={MyRadiobutton}
+                name="gender"
+                id="Male"
+                label="Male"
+              />
+              <Field
+                component={MyRadiobutton}
+                name="gender"
+                id="Female"
+                label="Female"
+              />
+              <Field
+                component={MyRadiobutton}
+                name="gender"
+                id="Other"
+                label="Other"
+              />
+            </fieldset>
 
             <button type="submit" disabled={isSubmitting}>
               Submit

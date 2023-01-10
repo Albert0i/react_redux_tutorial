@@ -79,3 +79,47 @@ a:hover, a:focus {
    HTML Color Names
    https://www.w3schools.com/tags/ref_colornames.asp
 */
+
+.RadioInput {
+  margin-bottom: 10px;
+}
+
+.RadioInput input[type=radio] {
+  display: none;
+}
+
+.RadioInput label {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  padding-left: 25px;
+  margin-right: 0;
+  line-height: 18px;
+  user-select: none;
+}
+
+/* .RadioInput label:before {
+  content: "";
+  display: inline-block;
+  width: 17px;
+  height: 18px;
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  background: url('./../../assets/img/radio-off.svg') 0 0 no-repeat;
+} */
+
+/* Checked
+.RadioInput input[type=radio]:checked + label:before {
+  background: url('./../../assets/img/radio-on.svg') 0 0 no-repeat;
+} */
+
+/* Hover */
+.RadioInput label:hover:before {
+  filter: brightness(120%);
+}
+
+/* Disabled */
+.RadioInput input[type=radio]:disabled + label:before {
+  filter: grayscale(100%);
+}
