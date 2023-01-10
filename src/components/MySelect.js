@@ -1,4 +1,4 @@
-import {  useField } from 'formik';
+import { useField } from 'formik';
 
 export const MySelect = ({ label, ...props }) => {
     const [field, meta] = useField(props);

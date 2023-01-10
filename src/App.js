@@ -1,15 +1,15 @@
 // import Counter from './features/counter/Counter';
 // import TodosList from './features/todos/TodosList';
-// import LoginForm from "./components/LoginForm";
-import SignupForm from './components/SignupForm'
+import LoginForm from "./components/LoginForm";
+// import SignupForm from './components/SignupForm'
 
 function App() {
   return (
     <div className="App">
       {/* <TodosList /> */}
       {/* <Counter /> */}
-      {/* <LoginForm /> */}
-      <SignupForm />
+      <LoginForm />
+      {/* <SignupForm /> */}
     </div>
   );
 }

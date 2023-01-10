@@ -7,7 +7,7 @@ const LoginForm = () => (
     <section className="login">
       <h1>Any place in your app!</h1>
       <Formik
-        initialValues={{ email: '', password: '' }}
+        initialValues={{ email: '', password: '', gender: 'Male' }}
         validate={values => {
           const errors = {};
           if (!values.email) {
@@ -33,7 +33,7 @@ const LoginForm = () => (
 
             <Field type="password" name="password" />
             <ErrorMessage name="password" component="div" />
-            
+
             <button type="submit" disabled={isSubmitting}>
               Submit
             </button>
